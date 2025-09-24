@@ -11,12 +11,19 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
+      const costOfSocks = 10;
+      const costOfTwoTshirts = 8 * 2;
+      const productCost = costOfSocks + costOfTwoTshirts;
+
+      const shippingCost = 5;
+
 
       const content = (
         <div>
-          <p>Cutton Socks</p>
-          <p>Price: $10</p>
-          <button>Add to Cart</button> 
+          <p>Product Cost: ${productCost}</p>
+          <p>Shipping Cost: ${shippingCost}</p>
+          <p>Total Cost: ${productCost + shippingCost}</p>
+          <button>Place your order</button>
         </div>
       )
       
