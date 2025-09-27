@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Components-props-challenge</title>
+    <title>E-commerce app</title>
   </head>
   <body>
     <div class="js-container"></div>
@@ -14,28 +14,34 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-      function LoginForm () {
+      function ProductBallDetails ({ item, price, discountPrice }) {
+
         return (
           <>
-            <div>
-              <input type="text" placeholder='Email' />
-            </div>
+          <p>{item}</p>
+          <p>Price: ${price}</p>
 
-            <div>
-              <input type="password" placeholder='Password' />
-            </div>
-  
-            <button>Login</button>
-            <button>Signup</button>
+          {discountPrice && (
+            <>
+            <p><del>Price: ${price}</del></p>
+            <p>Discounted Price: {discountPrice}</p>
+            </>
+          )}
+          
+          <button>Add to cart</button>
           </>
         );
       }
+
+      
        
       function App () {
         return (
-         <>
-          <p>Hello Welcome to my website</p>
-            <LoginForm />
+         <> 
+          <ProductBallDetails item = 'Cotton Socks' price = '10.90' discountPrice = '5.45' />
+          <ProductBallDetails item = 'Tennis Ball' price = '6.00' />
+          <ProductBallDetails item = 'T-Shirt' price = '7.99' />
+          
          </>
         );
       }
