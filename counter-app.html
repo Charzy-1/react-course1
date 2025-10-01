@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Counter app</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      
+      function CounterApp ({ count, setCount }) {
+        
+        function clickButton () {
+          setCount(count + 1);
+        }
+
+        return (
+          <>
+          <button onClick={clickButton} >Clicked {count} {count <= 1 ? 'time' : 'times'} </button>
+
+          
+          </>
+        )
+      }
+       
+      function App () {
+        const [ count, setCount ] = React.useState(0);
+
+        function resetButton () {
+          setCount(0);
+        }
+
+        return (
+         <> 
+          <p>
+              <CounterApp 
+                count={count}
+                setCount={setCount}
+              />
+          </p>
+          
+          <p>
+           <CounterApp 
+              count={count}
+              setCount={setCount}
+            />
+          </p>
+
+          <button onClick={resetButton}>Reset</button>
+          
+         </>
+        );
+      }
+
+      
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
