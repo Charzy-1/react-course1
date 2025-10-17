@@ -14,37 +14,57 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-      function ProductBallDetails ({ item, price, discountPrice }) {
+      function ProductDetails ({item, price, discountPrice}) {
+
+        /*if (discountPrice) {
+          return (
+            <>
+              <p>{item}</p>
+              <p>Price: {price}</p>
+              <p>Discount Price: ${discountPrice}</p>
+              <button>Add to Cart</button>
+            </>
+          )
+        }
+        */
 
         return (
           <>
-          <p>{item}</p>
-          <p>Price: ${price}</p>
-
-          {discountPrice && (
-            <>
-              <p><del>Price: ${price}</del></p>
-              <p>Discounted Price: {discountPrice}</p>
-            </>
-          )}
-          
-          <button>Add to cart</button>
+            <p>{item}</p>
+            {!discountPrice && (
+              <p>Price: {price}</p>
+            )}
+            {discountPrice && (
+              <>
+              <del><p>Price: {price}</p></del>
+              <p>Discount Price: ${discountPrice}</p>
+              </>
+            )}
+            <button>Add to Cart</button>
           </>
         );
-      }
+      };
 
-      
-       
       function App () {
         return (
-         <> 
-          <ProductBallDetails item = 'Cotton Socks' price = '10.90' discountPrice = '5.45' />
-          <ProductBallDetails item = 'Tennis Ball' price = '6.00' />
-          <ProductBallDetails item = 'T-Shirt' price = '7.99' />
-          
-         </>
+          <>
+            <ProductDetails 
+              item="Cotton Socks" 
+              price="10:90" 
+              discountPrice="5:45"
+            />
+            <ProductDetails 
+              item="Tennis Balls" 
+              price="6:00" 
+            />
+            <ProductDetails 
+              item="Plain T-shirt" 
+              price="7:99" 
+            />
+          </>
         );
-      }
+      };
+      
 
       
       const container = document.querySelector('.js-container');
