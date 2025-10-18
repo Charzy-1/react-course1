@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-      function ProductDetails ({item, price, discountPrice}) {
+      function ProductDetails ({item, price, discountPrice, imageSrc}) {
 
         /*if (discountPrice) {
           return (
@@ -30,15 +30,15 @@
 
         return (
           <>
+            <p><img src={imageSrc} width="50" /></p>
             <p>{item}</p>
-            {!discountPrice && (
-              <p>Price: {price}</p>
-            )}
-            {discountPrice && (
+            {discountPrice ? (
               <>
               <del><p>Price: {price}</p></del>
               <p>Discount Price: ${discountPrice}</p>
               </>
+            ) : (
+              <p>Price: ${price}</p>
             )}
             <button>Add to Cart</button>
           </>
@@ -52,20 +52,22 @@
               item="Cotton Socks" 
               price="10:90" 
               discountPrice="5:45"
+              imageSrc="cotton-socks.png"
+
             />
             <ProductDetails 
               item="Tennis Balls" 
-              price="6:00" 
+              price="6:00"
+              imageSrc="tennis-balls.png" 
             />
             <ProductDetails 
               item="Plain T-shirt" 
-              price="7:99" 
+              price="7:99"
+              imageSrc="plain-t-shirt.png" 
             />
           </>
         );
       };
-      
-
       
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
