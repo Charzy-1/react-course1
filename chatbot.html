@@ -11,17 +11,54 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       
-      function ChatImput () {
+      function ChatImput ({ chatMessages, setChatMessage }) {
+        const [inputText, setInputText] = React.useState('')
+
+        function saveInputText (event) {
+          setInputText(event.target.value)
+        }
+
+        function sendMessage () {
+          const newChatMessages = [
+            ...chatMessages, 
+            {
+              message: inputText,
+              sender: 'user',
+              id: crypto.randomUUID()
+            }
+          ]
+
+          setChatMessage(newChatMessages)
+
+          const response = Chatbot.getResponse(inputText);
+          setChatMessage([
+            ...newChatMessages, 
+            {
+              message: response,
+              sender: 'robot',
+              id: crypto.randomUUID()
+            }
+          ])
+
+          setInputText('')
+        }
+
         return (
           <>
             <input 
               placeholder='Send a message to Chatbot'
               size = '30'
+              onChange={saveInputText}
+              value={inputText}
             />
-            <button>Send</button>
+            <button 
+              onClick={sendMessage}
+            >Send</button>
           </>
         );
       };
@@ -56,8 +93,24 @@
         );
       };
 
-      function ChatMessages () {
-        const [chatMessages, setChatMessage] = React.useSeact([{
+      function ChatMessages ({ chatMessages }) {
+        return (
+          <>
+            {chatMessages.map((chatMessage) => {
+              return (
+                <ChatMessage 
+                  message={chatMessage.message}
+                  sender={chatMessage.sender}
+                  key={chatMessage.id}
+                />
+              );
+            })}
+          </>
+        );
+      };
+       
+      function App () {
+        const [chatMessages, setChatMessage] = React.useState([{
           message: 'Hello chatbot!',
           sender: 'user',
           id: 'id1'
@@ -75,27 +128,15 @@
           id: 'id4'
         }])
         
-
         return (
           <>
-            {chatMessages.map((chatMessage) => {
-              return (
-                <ChatMessage 
-                  message={chatMessage.message}
-                  sender={chatMessage.sender}
-                  key={chatMessage.id}
-                />
-              );
-            })}
-          </>
-        );
-      };
-       
-      function App () {
-        return (
-          <>
-            <ChatImput />
-            <ChatMessages />
+            <ChatImput 
+              chatMessages={chatMessages}
+              setChatMessage={setChatMessage}
+            />
+            <ChatMessages 
+              chatMessages={chatMessages}
+            />
           </>
         );
       };
