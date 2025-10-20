@@ -14,46 +14,34 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
       
-      function Display () {
-        const [ inputText, setInputText ] = React.useState('')
-
-        function paragraph (event) {
-          setInputText(event.target.value);
-        }
-
-        function reset () {
-          setInputText('');
-        }
-
-        function example () {
-          setInputText('Chidinma');
-        }
-
-        return (
-          <>
-            <input type="text" 
-              placeholder='Enter your name here'
-              value={inputText}
-              onChange={paragraph}
-            />
-
-            <button onClick={reset}>Reset</button>
-
-            <button onClick={example}>Example</button>
-            <p>Hello {inputText}</p>
-          </>
-        )
-        
-      };
-
-
       function App () {
+        const [ inputText, setInputText ] = React.useState('');
+
+        function saveInputText (event) {
+          setInputText(event.target.value)
+        }
+
+        function clearText () {
+          setInputText('')
+        }
+
+        function addText () {
+          setInputText('Charzy')
+        }
+
         return (
-         <> 
-          <Display />
-         </>
-        );
-      }
+        <>
+          <input 
+            placeholder='Enter a text' type='text'
+            onChange={saveInputText}
+            value={inputText}
+          />
+          <button onClick={clearText}>Reset</button>
+          <button onClick={addText}>Example</button>
+          <p>{inputText}</p>
+        </>
+        )
+      };
 
       
       const container = document.querySelector('.js-container');
