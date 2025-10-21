@@ -2,6 +2,43 @@
 <html>
   <head>
     <title>Chat-Bot</title>
+    <style>
+      .send-button {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        padding: 12px 15px;
+        font-size: 15px;
+        margin-left: 10px;
+        border: none;
+        border-radius: 10px;
+      }
+
+      .chat-input {
+        padding: 12px 15px;
+        border-radius: 10px;
+        font-size: 15px;
+        border-width: 1px;
+
+        flex-grow: 1;
+      }
+
+      .chat-input-container {
+        display: flex;
+      }
+
+      .app-input-container {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .chat-message-user {
+        display: flex;
+        justify-content: end;
+      }
+
+
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -49,17 +86,19 @@
         }
 
         return (
-          <>
+          <div className='chat-input-container'>
             <input 
               placeholder='Send a message to Chatbot'
               size = '30'
               onChange={saveInputText}
               value={inputText}
+              className='chat-input'
             />
             <button 
               onClick={sendMessage}
+              className='send-button'
             >Send</button>
-          </>
+          </div>
         );
       };
 
@@ -80,7 +119,11 @@
         */
 
         return (
-          <div>
+          <div className={
+            sender === 'user' 
+            ? 'chat-message-user' 
+            : 'chat-message-robot'
+          }>
             {sender === 'robot' && (
               <img src='robot.png' width='50'
              />
@@ -129,7 +172,7 @@
         }])
         
         return (
-          <>
+          <div className='app-input-container'>
             <ChatImput 
               chatMessages={chatMessages}
               setChatMessage={setChatMessage}
@@ -137,7 +180,7 @@
             <ChatMessages 
               chatMessages={chatMessages}
             />
-          </>
+          </div>
         );
       };
       
