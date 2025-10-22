@@ -13,6 +13,7 @@
             padding: 10px 15px;
             border: none;
             border-radius: 10px;
+            cursor: pointer;
         }
 
         .off-button {
@@ -21,6 +22,7 @@
             padding: 10px 15px;
             border: none;
             border-radius: 10px;
+            cursor: pointer;
         }
 
     </style>
@@ -37,10 +39,10 @@
     <script type="text/babel">
 
     function App () {
-    const [ isButtonOn, setIsButtonOn ] = React.useState(true);
+        const [ isButtonOn, setIsButtonOn ] = React.useState(true);
 
-    function toggleButton() {
-        setIsButtonOn(!isButtonOn);
+        function toggleButton() {
+            setIsButtonOn(!isButtonOn);
     }
 
     return (

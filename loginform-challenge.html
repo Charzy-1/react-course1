@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Components-props-challenge</title>
+    <style>
+      body {
+        font-family: Arial;
+      }
+
+      .email-input {
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        border-width: 1px;
+      }
+
+      .password-input {
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border-width: 1px;
+      }
+
+      .login-button {
+        background-color: rgb(0, 123, 255);
+        border: none;
+        padding: 10px 15px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .signup-button {
+        background-color: rgb(0, 123, 255);
+        border: none;
+        padding: 10px 15px;
+        margin-left: 10px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .password-switch {
+        background-color: rgb(26, 29, 33);
+        border: none;
+        padding: 10px 15px;
+        margin-left: 10px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      function LogInForm () {
+        const [ showPassword, setShowPassword ] = React.useState(false)
+
+        function togglePassword () {
+          setShowPassword(!showPassword);
+        }
+        return (
+          <>
+            <div >
+              <input type="text"
+                placeholder='Email'
+                className='email-input'
+              />
+            </div>
+
+            <div >
+              <input type={showPassword ? 'text' : 'password'}
+                className='password-input'
+                placeholder='Password'
+              />
+              <button className='password-switch'
+                onClick={togglePassword}
+              >
+                {showPassword ? 'Hide Password' : 'Show Password'}
+              </button>
+            </div>
+
+            <button className='login-button'>Login</button>
+            <button className='signup-button'>sign up</button>
+          </>
+        )
+      };
+
+       
+      function App () {
+        return (
+         <>
+          <p>Hello Welcome to my website</p>
+          <LogInForm />
+         </>
+        );
+      }
+
+      
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
