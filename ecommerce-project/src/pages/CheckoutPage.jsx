@@ -1,22 +1,22 @@
 import "./checkout-header.css";
-import "./CheckoutPage.css";
+import "./checkoutPage.css";
 
 export function CheckoutPage() {
   return (
     <>
-      <title>Checkout</title>
+      <title>checkout</title>
       <div className="checkout-header">
         <div className="header-content">
           <div className="checkout-header-left-section">
-            <a href="index.html">
+            <a href="/">
               <img className="logo" src="images/logo.png" />
               <img className="mobile-logo" src="images/mobile-logo.png" />
             </a>
           </div>
 
           <div className="checkout-header-middle-section">
-            Checkout (
-            <a className="return-to-home-link" href="index.html">
+            checkout (
+            <a className="return-to-home-link" href="/">
               3 items
             </a>
             )
