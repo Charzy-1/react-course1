@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Header } from "../components/Header";
-import { products } from "../../starting-code/data/products";
 import "./HomePage.css";
+import { useEffect, useState } from "react";
 
 export function HomePage() {
   // fetching data from the backend with fetch method
@@ -15,9 +15,20 @@ export function HomePage() {
     */
 
   // Fetching the data in a cleaner way using axios an npm package
+  /*
   axios.get("http://localhost:3000/api/products").then((response) => {
     console.log(response.data);
   });
+  */
+  // Saving the data inside the use state to let us use the data from backend
+  const [products, setProducts] = useState([]);
+
+  // Using useEffect hooke to enable us run the code once the component is created
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products").then((response) => {
+      setProducts(response.data);
+    });
+  }, []);
 
   return (
     <>
