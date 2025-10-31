@@ -23,10 +23,16 @@ export function HomePage() {
   // Saving the data inside the use state to let us use the data from backend
   const [products, setProducts] = useState([]);
 
+  const [cart, setCart] = useState([]);
+
   // Using useEffect hooke to enable us run the code once the component is created
   useEffect(() => {
     axios.get("http://localhost:3000/api/products").then((response) => {
       setProducts(response.data);
+    });
+
+    axios.get("http://localhost:3000/api/cart-items").then((response) => {
+      setCart(response.data);
     });
   }, []);
 
@@ -34,7 +40,7 @@ export function HomePage() {
     <>
       <title>Ecommerce project</title>
 
-      <Header />
+      <Header cart={cart} />
 
       <div className="home-page">
         <div className="products-grid">
