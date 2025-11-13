@@ -3,7 +3,7 @@ import { Header } from "../components/Header";
 import "./HomePage.css";
 import { useEffect, useState } from "react";
 
-export function HomePage() {
+export function HomePage({ cart }) {
   // fetching data from the backend with fetch method
   /* fetch("http://localhost:3000/api/products")
     .then((response) => {
@@ -23,16 +23,10 @@ export function HomePage() {
   // Saving the data inside the use state to let us use the data from backend
   const [products, setProducts] = useState([]);
 
-  const [cart, setCart] = useState([]);
-
   // Using useEffect hooke to enable us run the code once the component is created
   useEffect(() => {
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
-    });
-
-    axios.get("/api/cart-items").then((response) => {
-      setCart(response.data);
     });
   }, []);
 
