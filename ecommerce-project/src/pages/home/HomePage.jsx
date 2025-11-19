@@ -1,8 +1,8 @@
 import axios from "axios";
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header";
 import "./HomePage.css";
 import { useEffect, useState } from "react";
-import { formatMoney } from "../utils/money";
+import { formatMoney } from "../../utils/money";
 
 export function HomePage({ cart }) {
   // fetching data from the backend with fetch method
